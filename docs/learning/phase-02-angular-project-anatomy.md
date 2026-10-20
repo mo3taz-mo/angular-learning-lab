@@ -140,12 +140,13 @@ Outside the project: the pnpm metadata cache file for `magic-string` was renamed
 - [ ] Completed or consciously deferred exercises
 - [ ] Reviewed the topic without copying
 - [ ] Documentation matches actual results
-- [ ] User approved the next phase
+- [x] User approved the next phase (the learner asked to start Phase 03 on 2026-10-20)
 
 ## Known limitations
 - The app is the unmodified CLI starter (`app.html` is the Angular welcome page). No Angular Learning Lab features exist yet.
 - Phase 01 (TypeScript refresh) was skipped by choice.
-- Not yet viewed in a browser; no git repository has been initialized.
+- Not yet viewed in a browser.
+- A git repository was initialized afterwards (branch `main`, remote `origin`); `ng new` was run with `--skip-git`.
 - The commands were run from the agent session, not by the learner.
 
 ## Summary and next phase

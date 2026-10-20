@@ -1,0 +1,28 @@
+<section aria-labelledby="phase-list-heading">
+  <h2 id="phase-list-heading">Learning phases</h2>
+
+  <div class="phase-list__filters" role="group" aria-label="Filter phases by status">
+    @for (option of filterOptions; track option.value) {
+      <button
+        type="button"
+        class="phase-list__filter"
+        [attr.aria-pressed]="filter() === option.value"
+        (click)="selectFilter(option.value)"
+      >
+        {{ option.label }}
+      </button>
+    }
+  </div>
+
+  <p class="phase-list__count" aria-live="polite">
+    Showing {{ visiblePhases().length }} of {{ phases().length }} phases
+  </p>
+
+  <ul class="phase-list__items">
+    @for (phase of visiblePhases(); track phase.id) {
+      <li><app-phase-card [phase]="phase" /></li>
+    } @empty {
+      <li class="phase-list__empty">No phases match this filter.</li>
+    }
+  </ul>
+</section>

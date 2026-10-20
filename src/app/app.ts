@@ -1,12 +1,14 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { PhaseList } from './phases/phase-list/phase-list';
+import { PHASES } from './phases/phases.data';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [PhaseList],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  protected readonly title = signal('angular-learning-lab');
+  protected readonly phases = PHASES;
 }

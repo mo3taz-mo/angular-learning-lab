@@ -1,0 +1,21 @@
+@let current = phase();
+@let status = current.status;
+
+<article class="phase-card" [attr.data-status]="status">
+  <h3 class="phase-card__title">{{ current.title }}</h3>
+  <p class="phase-card__summary">{{ current.summary }}</p>
+  <p class="phase-card__status">
+    @switch (status) {
+      @case ('done') {
+        Done
+      }
+      @case ('in-progress') {
+        In progress
+      }
+      @case ('planned') {
+        Planned
+      }
+      @default never;
+    }
+  </p>
+</article>
