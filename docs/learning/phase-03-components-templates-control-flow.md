@@ -151,7 +151,7 @@ Changed:
 - [ ] Completed or consciously deferred exercises
 - [ ] Reviewed the topic without copying
 - [ ] Documentation matches actual results
-- [ ] User approved the next phase
+- [x] User approved the next phase (Phase 03 approved by the learner on 2026-10-20)
 
 ## Known limitations
 - All UI text is hardcoded English. Arabic/English and RTL/LTR are Phase 07; layout CSS already uses logical properties, but RTL has not been verified visually.
@@ -159,7 +159,7 @@ Changed:
 - Dark mode and keyboard navigation were not checked in a browser; contrast ratios were calculated, not measured on screen.
 - The unselected filter buttons use a 1.58:1 border against the page, below the 3:1 often used for UI component boundaries. The button text is readable, but consider a darker border in the accessibility pass (Phase 09).
 - Prettier still flags four CLI-generated files that were left untouched.
-- Nothing from this phase is committed or pushed yet.
+- Committed and pushed as `89e2f29`.
 
 ## Summary and next phase
 The app now shows a filterable roadmap built from two standalone, OnPush components with signal inputs, `signal()`, `computed()`, `@for`/`@empty`, `@switch` and `@let`, covered by 10 passing tests. Awaiting the learner's review. Proposed next phase: Phase 04, routing and layout shell. Not started.

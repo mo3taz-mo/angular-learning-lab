@@ -42,6 +42,10 @@ body {
   line-height: 1.5;
 }
 
+a {
+  color: var(--accent-color);
+}
+
 :focus-visible {
   outline: 3px solid var(--accent-color);
   outline-offset: 2px;

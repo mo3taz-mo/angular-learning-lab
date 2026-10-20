@@ -1,6 +1,10 @@
 import { Phase } from './phase.model';
 
 // Temporary in-code data for Phase 03. Phase 05 replaces this with local JSON content.
+export function findPhase(id: string | null | undefined): Phase | undefined {
+  return PHASES.find((phase) => phase.id === id);
+}
+
 export const PHASES: readonly Phase[] = [
   {
     id: 'phase-00',

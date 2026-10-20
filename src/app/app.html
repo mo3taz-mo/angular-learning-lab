@@ -1,8 +1,29 @@
+<a class="skip-link" href="#main-content" (click)="$event.preventDefault(); focusMain()">
+  Skip to main content
+</a>
+
 <header class="app-header">
-  <h1>Angular Learning Lab</h1>
-  <p>A step-by-step Angular learning journey you can reproduce.</p>
+  <a class="app-header__title" routerLink="/">Angular Learning Lab</a>
+  <nav aria-label="Main">
+    <ul class="app-nav">
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ariaCurrentWhenActive="page"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a routerLink="/roadmap" routerLinkActive="is-active" ariaCurrentWhenActive="page"
+          >Roadmap</a
+        >
+      </li>
+    </ul>
+  </nav>
 </header>
 
-<main class="app-main">
-  <app-phase-list [phases]="phases" />
+<main #mainContent id="main-content" class="app-main" tabindex="-1">
+  <router-outlet />
 </main>

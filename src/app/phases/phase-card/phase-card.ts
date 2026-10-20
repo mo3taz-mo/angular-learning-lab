@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Phase } from '../phase.model';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-phase-card',
   styleUrl: './phase-card.css',
   templateUrl: './phase-card.html',

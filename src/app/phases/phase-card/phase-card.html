@@ -2,7 +2,9 @@
 @let status = current.status;
 
 <article class="phase-card" [attr.data-status]="status">
-  <h3 class="phase-card__title">{{ current.title }}</h3>
+  <h3 class="phase-card__title">
+    <a [routerLink]="['/roadmap', current.id]">{{ current.title }}</a>
+  </h3>
   <p class="phase-card__summary">{{ current.summary }}</p>
   <p class="phase-card__status">
     @switch (status) {

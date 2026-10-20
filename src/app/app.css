@@ -2,15 +2,64 @@
   display: block;
   max-inline-size: 48rem;
   margin-inline: auto;
-  padding-block: 2rem;
+  padding-block: 1rem 2rem;
   padding-inline: 1rem;
 }
 
-.app-header h1 {
-  margin-block: 0 0.25rem;
+.skip-link {
+  position: absolute;
+  inset-inline-start: 1rem;
+  inset-block-start: -4rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  border-radius: 0.5rem;
+  background: var(--accent-color);
+  color: var(--accent-contrast-color);
 }
 
-.app-header p {
-  margin-block: 0 2rem;
-  color: var(--text-muted-color);
+.skip-link:focus {
+  inset-block-start: 1rem;
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block-end: 0.75rem;
+  margin-block-end: 1.5rem;
+  border-block-end: 1px solid var(--border-color);
+}
+
+.app-header__title {
+  color: var(--text-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-nav {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-nav a {
+  padding-block: 0.25rem;
+  border-block-end: 3px solid transparent;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.app-nav a.is-active {
+  border-block-end-color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* The main region only receives focus from code, so it needs no visible focus ring. */
+.app-main:focus {
+  outline: none;
 }

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Phase } from '../phase.model';
 import { PhaseList } from './phase-list';
 
@@ -29,6 +30,7 @@ describe('PhaseList', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PhaseList],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhaseList);

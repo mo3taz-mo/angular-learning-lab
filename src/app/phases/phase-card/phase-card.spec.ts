@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Phase, PhaseStatus } from '../phase.model';
 import { PhaseCard } from './phase-card';
 
@@ -21,6 +22,7 @@ describe('PhaseCard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PhaseCard],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhaseCard);
@@ -31,6 +33,11 @@ describe('PhaseCard', () => {
     await render(makePhase('planned'));
     expect(element.querySelector('h3')?.textContent).toContain('Sample phase');
     expect(element.textContent).toContain('Sample summary');
+  });
+
+  it('should link the title to the phase details route', async () => {
+    await render(makePhase('planned'));
+    expect(element.querySelector('h3 a')?.getAttribute('href')).toBe('/roadmap/phase-x');
   });
 
   it.each([
