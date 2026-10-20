@@ -1,0 +1,29 @@
+node_modules/
+dist/
+.angular/
+coverage/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Angular CLI build and test output
+/tmp
+/out-tsc
+__screenshots__/
+testem.log
+npm-debug.log
+
+# Competing package-manager lockfiles (pnpm only)
+package-lock.json
+yarn.lock
+
+# IDE and editor files (shared VS Code settings stay tracked)
+.idea/
+.history/*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
