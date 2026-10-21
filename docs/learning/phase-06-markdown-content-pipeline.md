@@ -1,6 +1,6 @@
 # Phase 06 — Markdown Content Pipeline
 
-> Status: steps executed by the agent on 2026-10-21, awaiting learner review and approval. "Actual result" lines are what happened; nothing is claimed beyond what was run.
+> Status: steps executed by the agent on 2026-10-21, approved by the learner on 2026-10-21. "Actual result" lines are what happened; nothing is claimed beyond what was run.
 
 ## Goal
 Make the app content-driven: the owner drops Markdown files into `docs/content` and the roadmap, phase pages and their Learn and Lesson sections update with no code changes, in Arabic and English.
@@ -153,16 +153,16 @@ Deleted: `src/app/phases/phase.model.ts`, `src/app/phases/phases.data.ts`, `src/
 - [ ] Reviewed the topic without copying
 - [ ] Documentation matches actual results
 - [ ] Owner decision on the Phase 00 wording (it still mentions PrimeNG and JSON)
-- [ ] User approved the next phase
+- [x] User approved the next phase (Phase 06 approved by the learner on 2026-10-21)
 
 ## Known limitations
 - Content is read at build/start time: editing a file needs `pnpm content` (or `pnpm content:watch` running next to `pnpm start`) before the site shows it.
-- Only the Phase 00 English file exists; the roadmap therefore has one phase. Planned phases need a front-matter-only file to appear.
+- Only English files exist (Phase 00 and Phase 01, added by the owner after this phase); Arabic text falls back to English. Planned phases need a front-matter-only file to appear.
 - Task-list checkboxes are read-only; the table of contents data is generated but not shown yet.
 - Subfolders in `docs/content` are not supported.
 - The phase `id` is the file name, so renaming a file changes its address.
 - Late browser screenshots failed (the browser extension stopped capturing), so the last visual checks were measurements; a final visual check by the learner is recommended.
-- Nothing from this phase is committed or pushed yet.
+- Phase 01's file needed the same structure-only edits as Phase 00 (rename to `.en.md`, front matter, markers, extra `#` headings demoted to `##`); the pipeline allows one `#` heading per file.
 
 ## Summary and next phase
-The roadmap, phase pages and their Learn and Lesson sections now come entirely from Markdown files in `docs/content`, validated and rendered safely at build time, loaded with `httpResource`, shown in Arabic or English with a fallback, and covered by 26 script tests and 73 app tests. Awaiting the learner's review. Proposed next phase: Phase 07, lesson reading features (in-page table of contents, search and filtering, code copy buttons). Not started.
+The roadmap, phase pages and their Learn and Lesson sections now come entirely from Markdown files in `docs/content`, validated and rendered safely at build time, loaded with `httpResource`, shown in Arabic or English with a fallback, and covered by 26 script tests and 73 app tests. Approved by the learner on 2026-10-21. Proposed next phase: Phase 07, lesson reading features (in-page table of contents, search and filtering, code copy buttons). Not started.
