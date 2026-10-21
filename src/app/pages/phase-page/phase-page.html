@@ -2,17 +2,67 @@
   <a routerLink="/roadmap">{{ 'phase.back' | t }}</a>
 </p>
 
-@if (phase(); as current) {
-  <h1>{{ current.title | localized }}</h1>
-  <p>{{ current.summary | localized }}</p>
-  <p class="phase-status">{{ 'phase.status' | t: { status: statusLabel() } }}</p>
+@if (content.index.hasValue()) {
+  @if (phase(); as current) {
+    <div [attr.lang]="textLanguage()?.code" [attr.dir]="textLanguage()?.dir">
+      <h1>{{ title() }}</h1>
+      <p class="phase-summary">{{ summary() }}</p>
+    </div>
+    <p class="phase-status">{{ 'phase.status' | t: { status: statusLabel() } }}</p>
 
-  <h2>{{ 'phase.lessons' | t }}</h2>
-  <p>{{ 'phase.lessonsNote' | t }}</p>
-  <p>
-    <a [routerLink]="['lessons', 'overview']">{{ 'phase.openOverview' | t }}</a>
-  </p>
+    @if (fallback(); as notice) {
+      <p class="content-notice" role="note">{{ 'content.fallback' | t: notice }}</p>
+    }
+
+    @if (intro(); as introHtml) {
+      <app-rendered-content [html]="introHtml" [language]="textLanguage()" />
+    }
+
+    <nav
+      mat-tab-nav-bar
+      class="phase-tabs"
+      [tabPanel]="panel"
+      [attr.aria-label]="'phase.tabs.label' | t"
+    >
+      <a
+        mat-tab-link
+        [routerLink]="['/roadmap', current.id, 'learn']"
+        [state]="{ keepFocus: true }"
+        routerLinkActive
+        #learnLink="routerLinkActive"
+        [active]="learnLink.isActive"
+        >{{ 'phase.tab.learn' | t }}</a
+      >
+      <a
+        mat-tab-link
+        [routerLink]="['/roadmap', current.id, 'lesson']"
+        [state]="{ keepFocus: true }"
+        routerLinkActive
+        #lessonLink="routerLinkActive"
+        [active]="lessonLink.isActive"
+        >{{ 'phase.tab.lesson' | t }}</a
+      >
+    </nav>
+
+    <mat-tab-nav-panel #panel class="phase-panel">
+      @if (document.hasValue()) {
+        @if (sectionHtml(); as html) {
+          <app-rendered-content [html]="html" [language]="textLanguage()" />
+        } @else {
+          <p>{{ 'phase.section.empty' | t }}</p>
+        }
+      } @else if (document.error()) {
+        <p role="alert">{{ 'content.error' | t }}</p>
+      } @else {
+        <p role="status">{{ 'content.loading' | t }}</p>
+      }
+    </mat-tab-nav-panel>
+  } @else {
+    <h1>{{ 'phase.notFound.title' | t }}</h1>
+    <p>{{ 'phase.notFound.body' | t: { id: phaseId() } }}</p>
+  }
+} @else if (content.index.error()) {
+  <p role="alert">{{ 'content.error' | t }}</p>
 } @else {
-  <h1>{{ 'phase.notFound.title' | t }}</h1>
-  <p>{{ 'phase.notFound.body' | t: { id: phaseId() } }}</p>
+  <p role="status">{{ 'content.loading' | t }}</p>
 }

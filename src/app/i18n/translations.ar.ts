@@ -36,24 +36,24 @@ export const ar: Record<TranslationKey, string> = {
   'roadmap.filter.all': 'الكل',
   'roadmap.count': 'المعروض: {shown} من {total}',
   'roadmap.empty': 'لا توجد مراحل تطابق عامل التصفية المحدد.',
+  'roadmap.noPhases': 'لم تُنشر أي مراحل بعد.',
 
   'status.done': 'مكتملة',
   'status.in-progress': 'قيد التنفيذ',
   'status.planned': 'مخطط لها',
 
+  'content.loading': 'جارٍ التحميل…',
+  'content.error': 'تعذّر تحميل المحتوى. تحقق من اتصالك ثم أعد تحميل الصفحة.',
+  'content.fallback': 'هذه الصفحة غير متوفرة بعد باللغة {language}. المعروض: {fallbackLanguage}.',
+
   'phase.back': 'العودة إلى خارطة الطريق',
   'phase.status': 'الحالة: {status}',
-  'phase.lessons': 'الدروس',
-  'phase.lessonsNote':
-    'سيُضاف محتوى الدروس من ملفات Markdown. هذا الرابط الآن يوضّح المسار المتداخل فقط.',
-  'phase.openOverview': 'افتح درس النظرة العامة (تجريبي)',
+  'phase.tabs.label': 'أقسام المرحلة',
+  'phase.tab.learn': 'تعلّم',
+  'phase.tab.lesson': 'الدرس',
+  'phase.section.empty': 'لا يوجد محتوى في هذا القسم بعد.',
   'phase.notFound.title': 'المرحلة غير موجودة',
   'phase.notFound.body': 'لا توجد مرحلة بالمعرّف "{id}".',
-
-  'lesson.breadcrumb': 'مسار التنقل',
-  'lesson.title': 'الدرس: {id}',
-  'lesson.placeholder': 'هذه صفحة مؤقتة. سيأتي محتوى الدروس من ملفات Markdown.',
-  'lesson.notFound.title': 'الدرس غير موجود',
 
   'notFound.title': 'الصفحة غير موجودة',
   'notFound.body': 'الصفحة التي تبحث عنها غير موجودة.',

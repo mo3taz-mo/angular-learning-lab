@@ -2,6 +2,28 @@
   margin-block: 0 1rem;
 }
 
+.phase-summary {
+  max-inline-size: 45rem;
+  color: var(--app-text-muted);
+}
+
 .phase-status {
   font: var(--mat-sys-label-large);
+}
+
+.content-notice {
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  border-inline-start: 0.25rem solid var(--app-status-in-progress);
+  border-radius: 0.25rem;
+  background: var(--app-card-surface);
+}
+
+.phase-tabs {
+  margin-block-start: 1.5rem;
+}
+
+.phase-panel {
+  display: block;
+  padding-block: 1rem;
 }

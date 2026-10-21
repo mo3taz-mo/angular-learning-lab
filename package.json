@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "content": "node scripts/build-content.mjs",
+    "content:watch": "node scripts/build-content.mjs --watch",
+    "start": "node scripts/build-content.mjs && ng serve",
+    "build": "node scripts/build-content.mjs && ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "node scripts/build-content.mjs && ng test",
+    "test:content": "node --test \"scripts/**/*.test.mjs\""
   },
   "private": true,
   "packageManager": "pnpm@11.9.0",
@@ -27,8 +30,10 @@
     "@angular/cli": "^22.2.3",
     "@angular/compiler-cli": "^22.2.0",
     "jsdom": "^30.0.0",
+    "markdown-it": "15.0.3",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "yaml": "2.9.1"
   }
 }

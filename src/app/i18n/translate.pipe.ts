@@ -16,7 +16,7 @@ export class TranslatePipe implements PipeTransform {
   }
 }
 
-/** `{{ phase.title | localized }}` — picks the active language from bilingual content. */
+/** `{{ phase.title | localized }}` — picks the active language from per-language text. */
 @Pipe({ name: 'localized', pure: false })
 export class LocalizedPipe implements PipeTransform {
   private readonly i18n = inject(I18nService);

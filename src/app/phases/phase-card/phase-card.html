@@ -3,10 +3,12 @@
 
 <mat-card appearance="outlined" class="phase-card" [attr.data-status]="status">
   <mat-card-content>
-    <h3 class="phase-card__title">
-      <a [routerLink]="['/roadmap', current.id]">{{ current.title | localized }}</a>
-    </h3>
-    <p class="phase-card__summary">{{ current.summary | localized }}</p>
+    <div [attr.lang]="textLanguage().code" [attr.dir]="textLanguage().dir">
+      <h3 class="phase-card__title">
+        <a [routerLink]="['/roadmap', current.id]">{{ title() }}</a>
+      </h3>
+      <p class="phase-card__summary">{{ summary() }}</p>
+    </div>
     <p class="phase-card__status">
       @switch (status) {
         @case ('done') {

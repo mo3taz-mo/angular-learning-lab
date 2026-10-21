@@ -16,6 +16,7 @@ export class I18nService {
 
   readonly lang = signal<Lang>(this.detectInitialLang());
   readonly dir = computed(() => LANGUAGES[this.lang()].dir);
+  readonly currentLanguage = computed<Language>(() => LANGUAGES[this.lang()]);
 
   /** The language the switcher offers (the one that is not active). */
   readonly otherLanguage = computed<Language>(() =>
@@ -47,9 +48,9 @@ export class I18nService {
     );
   }
 
-  /** Picks the active language's text from content that exists in every language. */
+  /** Picks the active language's text, falling back to English, then to any available language. */
   pick(text: LocalizedText): string {
-    return text[this.lang()] ?? text.en;
+    return text[this.lang()] ?? text.en ?? Object.values(text)[0] ?? '';
   }
 
   private applyToDocument(lang: Lang): void {

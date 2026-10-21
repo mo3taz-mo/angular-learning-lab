@@ -143,7 +143,7 @@ Deleted: `src/styles.css`.
 - [ ] Reviewed the topic without copying
 - [ ] Documentation matches actual results
 - [ ] Arabic wording reviewed by a native speaker
-- [ ] User approved the next phase
+- [x] User approved the next phase (Phase 05 approved by the learner on 2026-10-21)
 
 ## Known limitations
 - The Arabic text was written by the agent and has not been reviewed by a native speaker.
@@ -152,7 +152,7 @@ Deleted: `src/styles.css`.
 - Phase data is still temporary in-code content. Lesson, roadmap and learn content will come from the owner's Markdown files in Phase 06; the format has not been agreed yet.
 - The `local-json-content` skill is out of date and is marked as such; it will be rewritten in Phase 06.
 - Language and theme choices use browser local storage.
-- Nothing from this phase is committed or pushed yet.
+- Committed and pushed as `ee476ab`.
 
 ## Summary and next phase
 The app is now a designed, responsive, bilingual shell: Angular Material 3 theming with light, dark and system modes, a header with a language switcher and theme menu, a card grid that adapts from phone to desktop, and a language switch that flips the UI, the document `lang`/`dir`, the page titles and the Material overlays between English LTR and Arabic RTL. 49 tests pass and the production build succeeds. Awaiting the learner's review. Proposed next phase: Phase 06, the Markdown content pipeline, which needs a sample `.md` file and decisions on file layout, languages, and how files are loaded. Not started.

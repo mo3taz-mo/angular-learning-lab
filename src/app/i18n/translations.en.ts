@@ -1,5 +1,6 @@
 // English UI strings. The keys of this object define the TranslationKey type; the Arabic
 // dictionary must provide every key, so a missing translation is a compile error.
+// Lesson and roadmap content is not here: it comes from the Markdown files in docs/content.
 export const en = {
   'site.name': 'Angular Learning Lab',
   'site.tagline': 'A step-by-step Angular learning journey you can reproduce.',
@@ -35,24 +36,24 @@ export const en = {
   'roadmap.filter.all': 'All',
   'roadmap.count': 'Showing {shown} of {total} phases',
   'roadmap.empty': 'No phases match this filter.',
+  'roadmap.noPhases': 'No phases have been published yet.',
 
   'status.done': 'Done',
   'status.in-progress': 'In progress',
   'status.planned': 'Planned',
 
+  'content.loading': 'Loading…',
+  'content.error': 'The content could not be loaded. Check your connection and reload the page.',
+  'content.fallback': 'This page is not available in {language} yet. Showing {fallbackLanguage}.',
+
   'phase.back': 'Back to the roadmap',
   'phase.status': 'Status: {status}',
-  'phase.lessons': 'Lessons',
-  'phase.lessonsNote':
-    'Lesson content will be added from Markdown files. For now, this link only demonstrates a nested route.',
-  'phase.openOverview': 'Open the overview lesson (placeholder)',
+  'phase.tabs.label': 'Phase sections',
+  'phase.tab.learn': 'Learn',
+  'phase.tab.lesson': 'Lesson',
+  'phase.section.empty': 'This section has no content yet.',
   'phase.notFound.title': 'Phase not found',
   'phase.notFound.body': 'There is no phase with the id "{id}".',
-
-  'lesson.breadcrumb': 'Breadcrumb',
-  'lesson.title': 'Lesson: {id}',
-  'lesson.placeholder': 'This is a placeholder. Lesson content will come from Markdown files.',
-  'lesson.notFound.title': 'Lesson not found',
 
   'notFound.title': 'Page not found',
   'notFound.body': 'The page you are looking for does not exist.',

@@ -4,8 +4,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatAnchor, MatButton } from '@angular/material/button';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatToolbar } from '@angular/material/toolbar';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { filter, skip } from 'rxjs';
+import {
+  NavigationEnd,
+  NavigationStart,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { I18nService } from './i18n/i18n.service';
 import { TranslatePipe } from './i18n/translate.pipe';
 import { TranslationKey } from './i18n/translations.en';
@@ -48,14 +54,23 @@ export class App {
 
   constructor() {
     // Move focus to the main content after each navigation so keyboard and screen-reader users
-    // start at the new page. The first navigation (initial page load) is skipped.
-    inject(Router)
-      .events.pipe(
-        filter((event) => event instanceof NavigationEnd),
-        skip(1),
-        takeUntilDestroyed(),
-      )
-      .subscribe(() => this.focusMain());
+    // start at the new page. Two cases leave focus alone:
+    //  - the first navigation (the initial page load);
+    //  - a navigation that carries `state: { keepFocus: true }`, used by the Learn/Lesson tabs,
+    //    where focus should stay on the tab that was pressed.
+    const router = inject(Router);
+    let navigationCount = 0;
+    let keepFocus = false;
+    router.events.pipe(takeUntilDestroyed()).subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        keepFocus = router.getCurrentNavigation()?.extras.state?.['keepFocus'] === true;
+      } else if (event instanceof NavigationEnd) {
+        navigationCount += 1;
+        if (navigationCount > 1 && !keepFocus) {
+          this.focusMain();
+        }
+      }
+    });
   }
 
   protected focusMain(): void {

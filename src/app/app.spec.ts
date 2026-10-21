@@ -1,7 +1,10 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router, withComponentInputBinding } from '@angular/router';
 import { App } from './app';
 import { routes } from './app.routes';
+import { loadIndex } from './content/content.testing';
 import { I18nService } from './i18n/i18n.service';
 import { ThemeService } from './theme/theme.service';
 
@@ -11,8 +14,13 @@ describe('App', () => {
     document.documentElement.removeAttribute('data-theme');
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideRouter(routes, withComponentInputBinding())],
+      providers: [
+        provideRouter(routes, withComponentInputBinding()),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
+    await loadIndex(); // navigations create the title strategy, which loads the roadmap
   });
 
   const mainNavLinks = (element: HTMLElement) =>
@@ -65,6 +73,24 @@ describe('App', () => {
     expect(document.activeElement).not.toBe(element.querySelector('main'));
 
     await router.navigateByUrl('/roadmap');
+    await fixture.whenStable();
+    expect(document.activeElement).toBe(element.querySelector('main'));
+  });
+
+  it('should leave focus alone for a navigation that asks to keep it (the section tabs)', async () => {
+    const fixture = TestBed.createComponent(App);
+    const element = fixture.nativeElement as HTMLElement;
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/');
+    await fixture.whenStable();
+
+    const brand = element.querySelector<HTMLAnchorElement>('.app-header__brand')!;
+    brand.focus();
+    await router.navigateByUrl('/roadmap', { state: { keepFocus: true } });
+    await fixture.whenStable();
+    expect(document.activeElement).toBe(brand);
+
+    await router.navigateByUrl('/'); // a normal navigation moves focus again
     await fixture.whenStable();
     expect(document.activeElement).toBe(element.querySelector('main'));
   });

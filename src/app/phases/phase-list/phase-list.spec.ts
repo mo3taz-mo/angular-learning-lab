@@ -1,17 +1,22 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { PhaseStatus, PhaseSummary } from '../../content/content.model';
+import { loadIndex } from '../../content/content.testing';
 import { I18nService } from '../../i18n/i18n.service';
-import { Phase } from '../phase.model';
 import { PhaseList } from './phase-list';
 
-const phase = (id: string, title: string, status: Phase['status']): Phase => ({
+const phase = (id: string, title: string, status: PhaseStatus): PhaseSummary => ({
   id,
+  order: 0,
+  status,
+  languages: ['en', 'ar'],
   title: { en: title, ar: `${title} (ar)` },
   summary: { en: `${title} summary`, ar: `${title} summary (ar)` },
-  status,
 });
 
-const PHASES: readonly Phase[] = [
+const PHASES: readonly PhaseSummary[] = [
   phase('a', 'Alpha', 'done'),
   phase('b', 'Beta', 'in-progress'),
   phase('c', 'Gamma', 'planned'),
@@ -30,7 +35,7 @@ describe('PhaseList', () => {
       (button) => button.textContent?.trim() === label,
     )!;
 
-  const render = async (phases: readonly Phase[]) => {
+  const render = async (phases: readonly PhaseSummary[]) => {
     fixture.componentRef.setInput('phases', phases);
     await fixture.whenStable();
   };
@@ -39,9 +44,10 @@ describe('PhaseList', () => {
     localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [PhaseList],
-      providers: [provideRouter([])],
+      providers: [provideRouter([]), provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
 
+    await loadIndex(); // the cards read titles through ContentService, which loads the roadmap
     fixture = TestBed.createComponent(PhaseList);
     element = fixture.nativeElement as HTMLElement;
   });

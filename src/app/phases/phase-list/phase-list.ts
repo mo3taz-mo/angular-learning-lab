@@ -4,9 +4,9 @@ import {
   MatButtonToggleChange,
   MatButtonToggleGroup,
 } from '@angular/material/button-toggle';
+import { PHASE_STATUS_KEYS, PhaseFilter, PhaseSummary } from '../../content/content.model';
 import { TranslatePipe } from '../../i18n/translate.pipe';
 import { TranslationKey } from '../../i18n/translations.en';
-import { Phase, PHASE_STATUS_KEYS, PhaseFilter } from '../phase.model';
 import { PhaseCard } from '../phase-card/phase-card';
 
 interface FilterOption {
@@ -22,7 +22,7 @@ interface FilterOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhaseList {
-  readonly phases = input.required<readonly Phase[]>();
+  readonly phases = input.required<readonly PhaseSummary[]>();
 
   protected readonly filterOptions: readonly FilterOption[] = [
     { value: 'all', labelKey: 'roadmap.filter.all' },

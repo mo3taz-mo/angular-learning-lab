@@ -7,7 +7,7 @@ Build Angular Learning Lab: a production-minded, bilingual educational website t
 - Use the latest stable Angular version that is officially compatible with the selected Node.js and TypeScript versions. Verify official docs before version-sensitive changes; never guess.
 - Use pnpm as the only package manager. Do not create or commit `package-lock.json`, `yarn.lock`, or other competing lockfiles.
 - Use Angular Material and the CDK (MIT) as the UI library, at the same version as `@angular/core`; verify the official Material guides before version-sensitive changes. Do not add PrimeNG: PrimeNG 22 is under the PrimeUI License (license key), which does not fit a public, reproducible repository (owner decision, 2026-10-21).
-- Lesson and roadmap content is supplied by the owner as Markdown (`.md`) files containing lesson and learn sections, and the app must pick up new or changed files without code changes. The exact file format is agreed with the owner in the content-pipeline phase; do not invent it. No backend or database.
+- Lesson and roadmap content is supplied by the owner as Markdown (`.md`) files in `docs/content` (file name `<id>.<language>.md`, front matter, `## Learn` and `## Lesson` sections), and the app must pick up new or changed files without code changes. The format is documented in `docs/content/README.md`; do not change it without the owner. No backend or database.
 - Support Arabic and English from the beginning.
 - Arabic must use RTL layout and English LTR layout. Avoid hardcoded left/right layout assumptions; prefer logical CSS properties such as `margin-inline-start`.
 - Use standalone Angular components and modern Angular APIs supported by the selected release.

@@ -7,7 +7,7 @@ An open, bilingual (Arabic/English) learning platform built alongside a step-by-
 - Angular: latest stable release supported by the official compatibility table at implementation time.
 - Package manager: pnpm only.
 - UI: Angular Material + CDK (MIT), at the same version as Angular. PrimeNG is not used because PrimeNG 22 requires a license key.
-- Content: lesson and roadmap content is added as Markdown files (lesson and learn sections) without code changes; no backend. The file format is agreed in the content-pipeline phase.
+- Content: lesson and roadmap content is added as Markdown files in `docs/content` (Learn and Lesson sections) without code changes; no backend. See `docs/content/README.md`.
 - Languages: Arabic and English, with real RTL/LTR layout support.
 - AI coding agents: shared project rules for Codex and Claude Code.
 - Learning record: each completed phase gets a reproducible Markdown guide.
@@ -17,11 +17,20 @@ An open, bilingual (Arabic/English) learning platform built alongside a step-by-
 The app was generated with Angular CLI 22.2.3 and uses pnpm only (see `docs/learning/phase-02-angular-project-anatomy.md`).
 
 ```powershell
-pnpm install   # install dependencies
-pnpm start     # dev server at http://localhost:4200/
-pnpm test      # unit tests (Vitest)
-pnpm build     # production build into dist/
+pnpm install        # install dependencies
+pnpm start          # build the content, then the dev server at http://localhost:4200/
+pnpm test           # build the content, then the unit tests (Vitest)
+pnpm test:content   # tests for the content build script (Node's test runner)
+pnpm build          # build the content, then the production build into dist/
+pnpm content        # only check and build docs/content (prints every problem found)
+pnpm content:watch  # rebuild the content whenever a file in docs/content changes
 ```
+
+## Adding content
+
+Put Markdown files in `docs/content` and run `pnpm start`; see `docs/content/README.md` for the file
+name, front matter and the `## Learn` / `## Lesson` sections. The folder `public/content/` is
+generated from it and is not committed.
 
 ## Before implementation
 

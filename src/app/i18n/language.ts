@@ -14,8 +14,8 @@ export const LANGUAGES: Readonly<Record<Lang, Language>> = {
   ar: { code: 'ar', nativeName: 'العربية', dir: 'rtl' },
 };
 
-/** Text that exists in every supported language, used for content that is not UI chrome. */
-export type LocalizedText = Readonly<Record<Lang, string>>;
+/** Text that may exist in several languages; `pick` falls back to English, then any language. */
+export type LocalizedText = Readonly<Partial<Record<Lang, string>>>;
 
 export function isLang(value: unknown): value is Lang {
   return value === 'en' || value === 'ar';

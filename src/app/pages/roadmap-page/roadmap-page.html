@@ -1,2 +1,13 @@
 <h1>{{ 'roadmap.title' | t }}</h1>
-<app-phase-list [phases]="phases" />
+
+@if (content.index.hasValue()) {
+  @if (content.phases().length > 0) {
+    <app-phase-list [phases]="content.phases()" />
+  } @else {
+    <p>{{ 'roadmap.noPhases' | t }}</p>
+  }
+} @else if (content.index.error()) {
+  <p role="alert">{{ 'content.error' | t }}</p>
+} @else {
+  <p role="status">{{ 'content.loading' | t }}</p>
+}

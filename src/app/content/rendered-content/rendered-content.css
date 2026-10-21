@@ -1,0 +1,148 @@
+app-rendered-content {
+  display: block;
+}
+
+.rendered-content {
+  overflow-wrap: anywhere;
+}
+
+/* The line-length cap is on the children, not on .rendered-content itself. A block with a fixed
+   width lines up with its parent's direction, so capping the container would push English content
+   (dir=ltr) away from the left edge when it sits inside the right-to-left page. */
+.rendered-content > * {
+  max-inline-size: 60rem;
+}
+
+.rendered-content > :first-child {
+  margin-block-start: 0;
+}
+
+.rendered-content h2 {
+  margin-block: 2rem 0.75rem;
+  scroll-margin-block-start: 1rem;
+}
+
+.rendered-content h3 {
+  margin-block: 1.5rem 0.5rem;
+  scroll-margin-block-start: 1rem;
+}
+
+.rendered-content h4 {
+  margin-block: 1.25rem 0.5rem;
+  font: var(--mat-sys-title-small);
+}
+
+.rendered-content p,
+.rendered-content ul,
+.rendered-content ol {
+  margin-block: 0.75rem;
+}
+
+.rendered-content ul,
+.rendered-content ol {
+  padding-inline-start: 1.5rem;
+}
+
+.rendered-content li {
+  margin-block: 0.25rem;
+}
+
+.rendered-content ul.task-list {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.rendered-content .task-checkbox {
+  margin-inline-end: 0.5rem;
+}
+
+/* Callouts: "> **Important:** ..." */
+.rendered-content blockquote {
+  margin-block: 1rem;
+  margin-inline: 0;
+  padding-block: 0.25rem;
+  padding-inline: 1rem;
+  border-inline-start: 0.25rem solid var(--mat-sys-primary);
+  background: var(--app-card-surface);
+  border-radius: 0.25rem;
+}
+
+.rendered-content blockquote > :first-child {
+  margin-block-start: 0.5rem;
+}
+
+.rendered-content blockquote > :last-child {
+  margin-block-end: 0.5rem;
+}
+
+/* Code is always left-to-right, even on Arabic (RTL) pages, so it is aligned to the left on
+   purpose; this is the one place where a physical direction is correct. */
+.rendered-content pre.code-block {
+  direction: ltr;
+  text-align: left;
+  margin-block: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--app-border);
+  border-radius: 0.5rem;
+  background: var(--mat-sys-surface-container-high);
+  font:
+    0.875rem/1.5 ui-monospace,
+    'Cascadia Code',
+    Consolas,
+    'Courier New',
+    monospace;
+}
+
+.rendered-content code {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, 'Courier New', monospace;
+  font-size: 0.9em;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+.rendered-content :not(pre) > code {
+  padding-block: 0.1em;
+  padding-inline: 0.35em;
+  border-radius: 0.25rem;
+  background: var(--mat-sys-surface-container-high);
+}
+
+.rendered-content pre.code-block code {
+  font-size: inherit;
+}
+
+.rendered-content .table-wrap {
+  margin-block: 1rem;
+  overflow-x: auto;
+}
+
+.rendered-content table {
+  border-collapse: collapse;
+  inline-size: 100%;
+}
+
+.rendered-content th,
+.rendered-content td {
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--app-border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.rendered-content th {
+  background: var(--app-card-surface);
+  font-weight: 600;
+}
+
+.rendered-content img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+.rendered-content hr {
+  margin-block: 2rem;
+  border: 0;
+  border-block-start: 1px solid var(--app-border);
+}

@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ContentService } from '../../content/content.service';
 import { TranslatePipe } from '../../i18n/translate.pipe';
 import { PhaseList } from '../../phases/phase-list/phase-list';
-import { PHASES } from '../../phases/phases.data';
 
 @Component({
   imports: [PhaseList, TranslatePipe],
@@ -10,5 +10,5 @@ import { PHASES } from '../../phases/phases.data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapPage {
-  protected readonly phases = PHASES;
+  protected readonly content = inject(ContentService);
 }
