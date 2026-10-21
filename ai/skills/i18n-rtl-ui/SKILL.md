@@ -14,3 +14,4 @@ description: Implement and review Arabic/English localization with correct RTL/L
 7. Ensure the language switcher is keyboard-accessible and has an accessible name.
 8. Test at narrow and wide viewports and verify that switching language does not break layout.
 9. Do not claim full RTL support based only on setting the `dir` attribute; visually verify the components.
+10. Project setup: UI strings live in typed dictionaries (`src/app/i18n/translations.en.ts` and `translations.ar.ts`); a missing Arabic key is a compile error. Use the `t` pipe for UI text and the `localized` pipe for bilingual content. `I18nService` sets `lang` and `dir` on `<html>` and persists the choice. Page titles follow the language through `LocalizedTitleStrategy`.

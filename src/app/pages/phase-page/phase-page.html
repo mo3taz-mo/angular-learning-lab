@@ -1,14 +1,18 @@
-<p><a routerLink="/roadmap">&larr; Back to the roadmap</a></p>
+<p class="back-link">
+  <a routerLink="/roadmap">{{ 'phase.back' | t }}</a>
+</p>
 
 @if (phase(); as current) {
-  <h1>{{ current.title }}</h1>
-  <p>{{ current.summary }}</p>
-  <p>Status: {{ statusLabel() }}</p>
+  <h1>{{ current.title | localized }}</h1>
+  <p>{{ current.summary | localized }}</p>
+  <p class="phase-status">{{ 'phase.status' | t: { status: statusLabel() } }}</p>
 
-  <h2>Lessons</h2>
-  <p>Lesson content arrives in Phase 05. For now, this link only demonstrates a nested route.</p>
-  <p><a [routerLink]="['lessons', 'overview']">Open the overview lesson (placeholder)</a></p>
+  <h2>{{ 'phase.lessons' | t }}</h2>
+  <p>{{ 'phase.lessonsNote' | t }}</p>
+  <p>
+    <a [routerLink]="['lessons', 'overview']">{{ 'phase.openOverview' | t }}</a>
+  </p>
 } @else {
-  <h1>Phase not found</h1>
-  <p>There is no phase with the id "{{ phaseId() }}".</p>
+  <h1>{{ 'phase.notFound.title' | t }}</h1>
+  <p>{{ 'phase.notFound.body' | t: { id: phaseId() } }}</p>
 }

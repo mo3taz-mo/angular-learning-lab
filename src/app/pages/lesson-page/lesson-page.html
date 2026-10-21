@@ -1,18 +1,22 @@
 @if (phase(); as current) {
-  <nav aria-label="Breadcrumb">
+  <nav [attr.aria-label]="'lesson.breadcrumb' | t">
     <ol class="breadcrumb">
-      <li><a routerLink="/roadmap">Roadmap</a></li>
       <li>
-        <a [routerLink]="['/roadmap', current.id]">{{ current.title }}</a>
+        <a routerLink="/roadmap">{{ 'nav.roadmap' | t }}</a>
       </li>
-      <li aria-current="page">Lesson: {{ lessonId() }}</li>
+      <li>
+        <a [routerLink]="['/roadmap', current.id]">{{ current.title | localized }}</a>
+      </li>
+      <li aria-current="page">{{ 'lesson.title' | t: { id: lessonId() } }}</li>
     </ol>
   </nav>
 
-  <h1>Lesson: {{ lessonId() }}</h1>
-  <p>This is a placeholder. Lesson content is loaded from local JSON in Phase 05.</p>
+  <h1>{{ 'lesson.title' | t: { id: lessonId() } }}</h1>
+  <p>{{ 'lesson.placeholder' | t }}</p>
 } @else {
-  <h1>Lesson not found</h1>
-  <p>There is no phase with the id "{{ phaseId() }}".</p>
-  <p><a routerLink="/roadmap">Back to the roadmap</a></p>
+  <h1>{{ 'lesson.notFound.title' | t }}</h1>
+  <p>{{ 'phase.notFound.body' | t: { id: phaseId() } }}</p>
+  <p>
+    <a routerLink="/roadmap">{{ 'phase.back' | t }}</a>
+  </p>
 }

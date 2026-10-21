@@ -5,6 +5,8 @@ description: Model and load local JSON lesson content safely in Angular without 
 
 # Local JSON Content Skill
 
+> Status: out of date. The owner supplies lesson and learn content as Markdown (`.md`) files, which the app must load without code changes (see `AGENTS.md`). Rewrite this skill, including renaming it, once the content format is agreed in the content-pipeline phase. Until then, only the safety rules below still apply (typed data, no `eval`, graceful handling of missing content, no backend).
+
 1. Keep lesson/catalog content in local JSON for the initial product phase.
 2. Define TypeScript interfaces or types for the JSON schema and keep locale-specific content explicit.
 3. Validate assumptions at the data boundary; handle missing fields and unknown IDs gracefully.

@@ -1,29 +1,79 @@
-<a class="skip-link" href="#main-content" (click)="$event.preventDefault(); focusMain()">
-  Skip to main content
-</a>
+<!--
+  The [dir] directive keeps Angular's Directionality in step with the language: Material menus and
+  overlays read the direction from here, because changes to <html dir> alone are not observed.
+-->
+<div class="app" [dir]="i18n.dir()">
+  <a class="skip-link" href="#main-content" (click)="$event.preventDefault(); focusMain()">
+    {{ 'nav.skip' | t }}
+  </a>
 
-<header class="app-header">
-  <a class="app-header__title" routerLink="/">Angular Learning Lab</a>
-  <nav aria-label="Main">
-    <ul class="app-nav">
-      <li>
+  <header>
+    <mat-toolbar class="app-header">
+      <a class="app-header__brand" routerLink="/">{{ 'site.name' | t }}</a>
+
+      <nav class="app-nav" [attr.aria-label]="'nav.main' | t">
         <a
+          mat-button
           routerLink="/"
           routerLinkActive="is-active"
           [routerLinkActiveOptions]="{ exact: true }"
           ariaCurrentWhenActive="page"
-          >Home</a
+          >{{ 'nav.home' | t }}</a
         >
-      </li>
-      <li>
-        <a routerLink="/roadmap" routerLinkActive="is-active" ariaCurrentWhenActive="page"
-          >Roadmap</a
+        <a
+          mat-button
+          routerLink="/roadmap"
+          routerLinkActive="is-active"
+          ariaCurrentWhenActive="page"
+          >{{ 'nav.roadmap' | t }}</a
         >
-      </li>
-    </ul>
-  </nav>
-</header>
+      </nav>
 
-<main #mainContent id="main-content" class="app-main" tabindex="-1">
-  <router-outlet />
-</main>
+      <span class="app-header__spacer"></span>
+
+      <button
+        mat-button
+        type="button"
+        class="app-header__language"
+        [attr.lang]="i18n.otherLanguage().code"
+        [attr.aria-label]="'lang.switchTo' | t: { language: i18n.otherLanguage().nativeName }"
+        (click)="i18n.toggleLanguage()"
+      >
+        {{ i18n.otherLanguage().nativeName }}
+      </button>
+
+      <button mat-button type="button" [matMenuTriggerFor]="themeMenu">
+        {{ 'theme.label' | t }}
+      </button>
+      <mat-menu #themeMenu="matMenu">
+        @for (option of themeOptions; track option.mode) {
+          <button
+            mat-menu-item
+            type="button"
+            role="menuitemradio"
+            [attr.aria-checked]="theme.mode() === option.mode"
+            (click)="theme.setMode(option.mode)"
+          >
+            {{ option.labelKey | t }}
+          </button>
+        }
+      </mat-menu>
+
+      <button mat-button type="button" class="app-header__menu" [matMenuTriggerFor]="navMenu">
+        {{ 'nav.menu' | t }}
+      </button>
+      <mat-menu #navMenu="matMenu">
+        <a mat-menu-item routerLink="/">{{ 'nav.home' | t }}</a>
+        <a mat-menu-item routerLink="/roadmap">{{ 'nav.roadmap' | t }}</a>
+      </mat-menu>
+    </mat-toolbar>
+  </header>
+
+  <main #mainContent id="main-content" class="app-main" tabindex="-1">
+    <router-outlet />
+  </main>
+
+  <footer class="app-footer">
+    <p>{{ 'footer.text' | t }}</p>
+  </footer>
+</div>

@@ -13,7 +13,7 @@ What the learner will be able to do by the end.
 | Node.js | TBD | https://nodejs.org/ | TBD |
 | Angular | TBD | https://angular.dev/reference/versions | TBD |
 | pnpm | TBD | https://pnpm.io/ | TBD |
-| PrimeNG (if applicable) | TBD | https://primeng.org/ | TBD |
+| Angular Material (if applicable) | TBD | https://material.angular.dev/ | TBD |
 
 ## Learn — Read and watch
 ### Official documentation

@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, TitleStrategy, withComponentInputBinding } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { routes } from './app.routes';
+import { I18nService } from './i18n/i18n.service';
+import { LocalizedTitleStrategy } from './i18n/localized-title.strategy';
 
 describe('routes', () => {
   let harness: RouterTestingHarness;
@@ -11,8 +13,12 @@ describe('routes', () => {
   const documentTitle = () => TestBed.inject(Title).getTitle();
 
   beforeEach(async () => {
+    localStorage.clear();
     TestBed.configureTestingModule({
-      providers: [provideRouter(routes, withComponentInputBinding())],
+      providers: [
+        provideRouter(routes, withComponentInputBinding()),
+        { provide: TitleStrategy, useExisting: LocalizedTitleStrategy },
+      ],
     });
     harness = await RouterTestingHarness.create();
   });
@@ -71,5 +77,27 @@ describe('routes', () => {
     link!.click();
     await harness.fixture.whenStable();
     expect(heading()).toBe('Create the app and project anatomy');
+  });
+
+  describe('when the language changes', () => {
+    it('should re-render the page and the document title in Arabic', async () => {
+      await harness.navigateByUrl('/roadmap/phase-03');
+      TestBed.inject(I18nService).setLanguage('ar');
+      await harness.fixture.whenStable();
+
+      expect(heading()).toBe('المكوّنات والقوالب وتدفق التحكم');
+      expect(documentTitle()).toBe('المكوّنات والقوالب وتدفق التحكم | مختبر أنجولار للتعلّم');
+    });
+
+    it('should show Arabic page titles for routes visited while in Arabic', async () => {
+      TestBed.inject(I18nService).setLanguage('ar');
+
+      await harness.navigateByUrl('/roadmap');
+      expect(heading()).toBe('خارطة طريق التعلّم');
+      expect(documentTitle()).toBe('خارطة طريق التعلّم | مختبر أنجولار للتعلّم');
+
+      await harness.navigateByUrl('/no/such/page');
+      expect(heading()).toBe('الصفحة غير موجودة');
+    });
   });
 });

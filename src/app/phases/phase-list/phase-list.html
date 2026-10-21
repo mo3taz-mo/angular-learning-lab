@@ -1,28 +1,26 @@
 <section aria-labelledby="phase-list-heading">
-  <h2 id="phase-list-heading">Learning phases</h2>
+  <h2 id="phase-list-heading">{{ 'roadmap.listTitle' | t }}</h2>
 
-  <div class="phase-list__filters" role="group" aria-label="Filter phases by status">
+  <mat-button-toggle-group
+    class="phase-list__filters"
+    [attr.aria-label]="'roadmap.filter.label' | t"
+    [value]="filter()"
+    (change)="selectFilter($event)"
+  >
     @for (option of filterOptions; track option.value) {
-      <button
-        type="button"
-        class="phase-list__filter"
-        [attr.aria-pressed]="filter() === option.value"
-        (click)="selectFilter(option.value)"
-      >
-        {{ option.label }}
-      </button>
+      <mat-button-toggle [value]="option.value">{{ option.labelKey | t }}</mat-button-toggle>
     }
-  </div>
+  </mat-button-toggle-group>
 
   <p class="phase-list__count" aria-live="polite">
-    Showing {{ visiblePhases().length }} of {{ phases().length }} phases
+    {{ 'roadmap.count' | t: { shown: visiblePhases().length, total: phases().length } }}
   </p>
 
   <ul class="phase-list__items">
     @for (phase of visiblePhases(); track phase.id) {
       <li><app-phase-card [phase]="phase" /></li>
     } @empty {
-      <li class="phase-list__empty">No phases match this filter.</li>
+      <li class="phase-list__empty">{{ 'roadmap.empty' | t }}</li>
     }
   </ul>
 </section>

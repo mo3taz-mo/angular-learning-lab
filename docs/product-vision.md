@@ -15,7 +15,7 @@ A public learning resource built while the owner learns Angular. Visitors should
 3. Bilingual: Arabic and English content are first-class.
 4. Accessible: keyboard support, semantics, focus visibility, contrast, and screen-reader labels.
 5. Version-aware: documentation links and dependency compatibility are checked against official sources.
-6. Local-first: JSON is the initial source for lesson and roadmap data.
+6. Local-first: Markdown files supplied by the owner are the source for lesson and roadmap content; adding a file needs no code change.
 7. Incremental: implement one approved phase at a time.
 
 ## Initial scope
@@ -26,7 +26,7 @@ A public learning resource built while the owner learns Angular. Visitors should
 - Language switcher and RTL/LTR direction
 - Code snippets and copy-to-clipboard
 - Responsive layout
-- Local JSON content models
+- Markdown content pipeline (lesson and learn sections for the roadmap and each topic)
 - Basic tests and a reproducible setup guide
 
 ## Out of scope initially

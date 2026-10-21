@@ -1,6 +1,22 @@
-<h1>Angular Learning Lab</h1>
-<p>
-  A step-by-step Angular learning journey you can reproduce. Every phase has exact commands,
-  expected results, and exercises.
-</p>
-<p><a routerLink="/roadmap">View the learning roadmap</a></p>
+<section class="home-hero">
+  <h1>{{ 'site.name' | t }}</h1>
+  <p class="home-hero__tagline">{{ 'site.tagline' | t }}</p>
+  <p class="home-hero__intro">{{ 'home.intro' | t }}</p>
+  <a mat-flat-button routerLink="/roadmap">{{ 'home.cta' | t }}</a>
+</section>
+
+<section aria-labelledby="home-features-heading">
+  <h2 id="home-features-heading">{{ 'home.features' | t }}</h2>
+  <ul class="home-features">
+    @for (feature of features; track feature.titleKey) {
+      <li>
+        <mat-card appearance="outlined" class="home-feature">
+          <mat-card-content>
+            <h3>{{ feature.titleKey | t }}</h3>
+            <p>{{ feature.bodyKey | t }}</p>
+          </mat-card-content>
+        </mat-card>
+      </li>
+    }
+  </ul>
+</section>

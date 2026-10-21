@@ -1,0 +1,7 @@
+.back-link {
+  margin-block: 0 1rem;
+}
+
+.phase-status {
+  font: var(--mat-sys-label-large);
+}

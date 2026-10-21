@@ -1,3 +1,5 @@
-<h1>Page not found</h1>
-<p>The page you are looking for does not exist.</p>
-<p><a routerLink="/">Go to the home page</a></p>
+<h1>{{ 'notFound.title' | t }}</h1>
+<p>{{ 'notFound.body' | t }}</p>
+<p>
+  <a routerLink="/">{{ 'notFound.home' | t }}</a>
+</p>

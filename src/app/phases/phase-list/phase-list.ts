@@ -1,14 +1,21 @@
 import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
-import { Phase, PhaseFilter } from '../phase.model';
+import {
+  MatButtonToggle,
+  MatButtonToggleChange,
+  MatButtonToggleGroup,
+} from '@angular/material/button-toggle';
+import { TranslatePipe } from '../../i18n/translate.pipe';
+import { TranslationKey } from '../../i18n/translations.en';
+import { Phase, PHASE_STATUS_KEYS, PhaseFilter } from '../phase.model';
 import { PhaseCard } from '../phase-card/phase-card';
 
 interface FilterOption {
   readonly value: PhaseFilter;
-  readonly label: string;
+  readonly labelKey: TranslationKey;
 }
 
 @Component({
-  imports: [PhaseCard],
+  imports: [MatButtonToggle, MatButtonToggleGroup, PhaseCard, TranslatePipe],
   selector: 'app-phase-list',
   styleUrl: './phase-list.css',
   templateUrl: './phase-list.html',
@@ -18,10 +25,10 @@ export class PhaseList {
   readonly phases = input.required<readonly Phase[]>();
 
   protected readonly filterOptions: readonly FilterOption[] = [
-    { value: 'all', label: 'All' },
-    { value: 'done', label: 'Done' },
-    { value: 'in-progress', label: 'In progress' },
-    { value: 'planned', label: 'Planned' },
+    { value: 'all', labelKey: 'roadmap.filter.all' },
+    { value: 'done', labelKey: PHASE_STATUS_KEYS['done'] },
+    { value: 'in-progress', labelKey: PHASE_STATUS_KEYS['in-progress'] },
+    { value: 'planned', labelKey: PHASE_STATUS_KEYS['planned'] },
   ];
 
   protected readonly filter = signal<PhaseFilter>('all');
@@ -32,7 +39,7 @@ export class PhaseList {
     return filter === 'all' ? phases : phases.filter((phase) => phase.status === filter);
   });
 
-  protected selectFilter(value: PhaseFilter): void {
-    this.filter.set(value);
+  protected selectFilter(event: MatButtonToggleChange): void {
+    this.filter.set(event.value as PhaseFilter);
   }
 }

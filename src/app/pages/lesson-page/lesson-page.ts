@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LocalizedPipe, TranslatePipe } from '../../i18n/translate.pipe';
 import { findPhase } from '../../phases/phases.data';
 
 @Component({
-  imports: [RouterLink],
+  imports: [LocalizedPipe, RouterLink, TranslatePipe],
   selector: 'app-lesson-page',
-  templateUrl: './lesson-page.html',
   styleUrl: './lesson-page.css',
+  templateUrl: './lesson-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LessonPage {

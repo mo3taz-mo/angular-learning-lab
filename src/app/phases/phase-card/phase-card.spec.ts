@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { I18nService } from '../../i18n/i18n.service';
 import { Phase, PhaseStatus } from '../phase.model';
 import { PhaseCard } from './phase-card';
 
 const makePhase = (status: PhaseStatus): Phase => ({
   id: 'phase-x',
-  title: 'Sample phase',
-  summary: 'Sample summary',
+  title: { en: 'Sample phase', ar: 'مرحلة تجريبية' },
+  summary: { en: 'Sample summary', ar: 'ملخص تجريبي' },
   status,
 });
 
@@ -20,6 +21,7 @@ describe('PhaseCard', () => {
   };
 
   beforeEach(async () => {
+    localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [PhaseCard],
       providers: [provideRouter([])],
@@ -48,6 +50,16 @@ describe('PhaseCard', () => {
     await render(makePhase(status));
     const statusText = element.querySelector('.phase-card__status')?.textContent?.trim();
     expect(statusText).toBe(label);
-    expect(element.querySelector('article')?.getAttribute('data-status')).toBe(status);
+    expect(element.querySelector('mat-card')?.getAttribute('data-status')).toBe(status);
+  });
+
+  it('should render in Arabic when the language changes, without re-creating the card', async () => {
+    await render(makePhase('done'));
+    TestBed.inject(I18nService).setLanguage('ar');
+    await fixture.whenStable();
+
+    expect(element.querySelector('h3')?.textContent).toContain('مرحلة تجريبية');
+    expect(element.textContent).toContain('ملخص تجريبي');
+    expect(element.querySelector('.phase-card__status')?.textContent?.trim()).toBe('مكتملة');
   });
 });

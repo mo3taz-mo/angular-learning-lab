@@ -1,65 +1,122 @@
 :host {
   display: block;
-  max-inline-size: 48rem;
-  margin-inline: auto;
-  padding-block: 1rem 2rem;
-  padding-inline: 1rem;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
 }
 
 .skip-link {
   position: absolute;
   inset-inline-start: 1rem;
   inset-block-start: -4rem;
+  z-index: 10;
   padding-block: 0.5rem;
   padding-inline: 1rem;
   border-radius: 0.5rem;
-  background: var(--accent-color);
-  color: var(--accent-contrast-color);
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
 }
 
 .skip-link:focus {
   inset-block-start: 1rem;
 }
 
+/* Header: brand, desktop navigation, then the language / theme / menu controls. */
 .app-header {
-  display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem 1.5rem;
-  padding-block-end: 0.75rem;
-  margin-block-end: 1.5rem;
-  border-block-end: 1px solid var(--border-color);
+  gap: 0.25rem 0.5rem;
+  block-size: auto;
+  min-block-size: 4rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  border-block-end: 1px solid var(--app-border);
+  background: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface);
 }
 
-.app-header__title {
-  color: var(--text-color);
-  font-size: 1.25rem;
-  font-weight: 700;
+.app-header__brand {
+  margin-inline-end: 1rem;
+  color: inherit;
+  font: var(--mat-sys-title-large);
   text-decoration: none;
+}
+
+.app-header__spacer {
+  flex: 1 1 auto;
 }
 
 .app-nav {
   display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.app-nav a {
-  padding-block: 0.25rem;
-  border-block-end: 3px solid transparent;
-  color: var(--text-color);
-  text-decoration: none;
+  gap: 0.25rem;
 }
 
 .app-nav a.is-active {
-  border-block-end-color: var(--accent-color);
-  font-weight: 600;
+  background: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+}
+
+/* The compact navigation menu replaces the inline links on narrow screens. */
+.app-header__menu {
+  display: none;
+}
+
+@media (max-width: 599.98px) {
+  .app-nav {
+    display: none;
+  }
+
+  .app-header__menu {
+    display: inline-flex;
+  }
+
+  .app-header__brand {
+    flex: 1 1 100%;
+    margin-inline-end: 0;
+  }
+
+  .app-header__spacer {
+    display: none;
+  }
+}
+
+.app-main {
+  flex: 1 0 auto;
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: 72rem;
+  margin-inline: auto;
+  padding-block: 1.5rem 2rem;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 840px) {
+  .app-main {
+    padding-block: 2.5rem 3rem;
+    padding-inline: 2rem;
+  }
+
+  /* Keep the header's content aligned with the page content (max 72rem wide, 2rem padding). */
+  .app-header {
+    padding-inline: max(2rem, calc((100% - 72rem) / 2 + 2rem));
+  }
 }
 
 /* The main region only receives focus from code, so it needs no visible focus ring. */
 .app-main:focus {
   outline: none;
+}
+
+.app-footer {
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  border-block-start: 1px solid var(--app-border);
+  color: var(--app-text-muted);
+  text-align: center;
+}
+
+.app-footer p {
+  margin: 0;
 }

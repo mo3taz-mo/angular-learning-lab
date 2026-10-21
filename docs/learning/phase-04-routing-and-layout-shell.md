@@ -148,7 +148,7 @@ Changed:
 - [ ] Completed or consciously deferred exercises
 - [ ] Reviewed the topic without copying
 - [ ] Documentation matches actual results
-- [ ] User approved the next phase
+- [x] User approved the next phase (Phase 04 approved by the learner on 2026-10-20)
 
 ## Known limitations
 - All text is hardcoded English; RTL/LTR and the language switcher are Phase 07. Layout CSS uses logical properties but RTL has not been checked visually.
@@ -160,4 +160,4 @@ Changed:
 - Nothing from this phase is committed or pushed yet.
 
 ## Summary and next phase
-The app now has a layout shell and five routes, with lazy-loaded pages, route parameters bound to inputs, per-page titles, an accessible skip link, current-page marking, and focus management after navigation, covered by 21 passing tests. Awaiting the learner's review. Proposed next phase: Phase 05, local JSON content and typed models. Not started.
+The app now has a layout shell and five routes, with lazy-loaded pages, route parameters bound to inputs, per-page titles, an accessible skip link, current-page marking, and focus management after navigation, covered by 21 passing tests. Awaiting the learner's review. The proposed next phase was local JSON content; that plan was replaced (see the Phase 05 guide): design, responsive layout and Arabic/English came next, and content will be loaded from Markdown files.

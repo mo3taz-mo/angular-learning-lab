@@ -3,42 +3,26 @@
 }
 
 .phase-list__filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-block-end: 0.75rem;
-}
-
-.phase-list__filter {
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  background: var(--surface-color);
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-}
-
-.phase-list__filter[aria-pressed='true'] {
-  border-color: var(--accent-color);
-  background: var(--accent-color);
-  color: var(--accent-contrast-color);
+  max-inline-size: 100%;
+  overflow-x: auto;
 }
 
 .phase-list__count {
-  margin-block: 0 1rem;
-  color: var(--text-muted-color);
+  margin-block: 0.75rem 1rem;
+  color: var(--app-text-muted);
 }
 
+/* One column on phones, more as the screen widens. */
 .phase-list__items {
   display: grid;
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .phase-list__empty {
-  color: var(--text-muted-color);
+  grid-column: 1 / -1;
+  color: var(--app-text-muted);
 }
