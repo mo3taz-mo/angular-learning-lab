@@ -35,7 +35,8 @@ export const en = {
   'roadmap.filter.label': 'Filter phases by status',
   'roadmap.filter.all': 'All',
   'roadmap.count': 'Showing {shown} of {total} phases',
-  'roadmap.empty': 'No phases match this filter.',
+  'roadmap.search.label': 'Search phases',
+  'roadmap.empty': 'No phases match your search or filter.',
   'roadmap.noPhases': 'No phases have been published yet.',
 
   'status.done': 'Done',
@@ -52,6 +53,13 @@ export const en = {
   'phase.tab.learn': 'Learn',
   'phase.tab.lesson': 'Lesson',
   'phase.section.empty': 'This section has no content yet.',
+  'toc.title': 'On this page',
+
+  'code.copy': 'Copy code',
+  'code.copied': 'Copied',
+  'code.copiedAnnounce': 'Code copied to the clipboard.',
+  'code.copyFailed': 'Copying failed. The code is selected, press Ctrl+C to copy it.',
+
   'phase.notFound.title': 'Phase not found',
   'phase.notFound.body': 'There is no phase with the id "{id}".',
 

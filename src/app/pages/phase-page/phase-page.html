@@ -46,11 +46,24 @@
 
     <mat-tab-nav-panel #panel class="phase-panel">
       @if (document.hasValue()) {
-        @if (sectionHtml(); as html) {
-          <app-rendered-content [html]="html" [language]="textLanguage()" />
-        } @else {
-          <p>{{ 'phase.section.empty' | t }}</p>
-        }
+        <div class="phase-layout" [class.phase-layout--toc]="toc().length > 0">
+          @if (toc().length > 0) {
+            <app-section-toc
+              class="phase-toc"
+              [entries]="toc()"
+              [language]="textLanguage()"
+              [open]="wide()"
+              (select)="goToHeading($event)"
+            />
+          }
+          <div class="phase-body">
+            @if (sectionHtml(); as html) {
+              <app-rendered-content [html]="html" [language]="textLanguage()" />
+            } @else {
+              <p>{{ 'phase.section.empty' | t }}</p>
+            }
+          </div>
+        </div>
       } @else if (document.error()) {
         <p role="alert">{{ 'content.error' | t }}</p>
       } @else {

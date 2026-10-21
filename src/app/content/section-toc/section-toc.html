@@ -1,0 +1,14 @@
+<nav [attr.aria-label]="'toc.title' | t">
+  <details class="toc" [open]="open()">
+    <summary class="toc__title">{{ 'toc.title' | t }}</summary>
+    <ol class="toc__list" [attr.lang]="language()?.code" [attr.dir]="language()?.dir">
+      @for (entry of entries(); track entry.id) {
+        <li [class.toc__item--sub]="entry.level > 2">
+          <button type="button" class="toc__link" (click)="select.emit(entry.id)">
+            {{ entry.text }}
+          </button>
+        </li>
+      }
+    </ol>
+  </details>
+</nav>

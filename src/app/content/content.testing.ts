@@ -52,11 +52,21 @@ export function documentFixture(id: string, lang: Lang): PhaseDocument {
     order: summary.order,
     status: summary.status,
     intro: empty ? null : `<blockquote><p>Goal (${lang})</p></blockquote>`,
-    learn: empty ? null : `<h2 id="rules">Rules</h2><p>Learn text (${lang})</p>`,
+    learn: empty
+      ? null
+      : `<h2 id="rules">Rules</h2><p>Learn text (${lang})</p><h2 id="tools">Tools</h2><p>More text</p>`,
     lesson: empty
       ? null
       : `<h3 id="step-1">Step 1</h3><pre class="code-block" dir="ltr"><code>node --version</code></pre><ul class="task-list"><li class="task-list-item"><input class="task-checkbox" type="checkbox" disabled> Done it</li></ul>`,
-    toc: { learn: [], lesson: [] },
+    toc: empty
+      ? { learn: [], lesson: [] }
+      : {
+          learn: [
+            { level: 2, id: 'rules', text: 'Rules' },
+            { level: 2, id: 'tools', text: 'Tools' },
+          ],
+          lesson: [{ level: 3, id: 'step-1', text: 'Step 1' }],
+        },
   };
 }
 

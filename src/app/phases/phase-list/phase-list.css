@@ -2,6 +2,12 @@
   display: block;
 }
 
+.phase-list__search {
+  display: block;
+  max-inline-size: 24rem;
+  margin-block-end: 1rem;
+}
+
 .phase-list__filters {
   max-inline-size: 100%;
   overflow-x: auto;

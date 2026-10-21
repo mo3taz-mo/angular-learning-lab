@@ -90,8 +90,78 @@ describe('PhaseList', () => {
 
     expect(cardTitles()).toEqual([]);
     expect(element.querySelector('.phase-list__empty')?.textContent).toContain(
-      'No phases match this filter.',
+      'No phases match your search or filter.',
     );
+  });
+
+  describe('search', () => {
+    const search = async (text: string) => {
+      const input = element.querySelector<HTMLInputElement>('input[type="search"]')!;
+      input.value = text;
+      input.dispatchEvent(new Event('input'));
+      await fixture.whenStable();
+    };
+
+    it('should have an accessible name', async () => {
+      await render(PHASES);
+      expect(element.querySelector('mat-label')?.textContent?.trim()).toBe('Search phases');
+    });
+
+    it('should match the title regardless of case', async () => {
+      await render(PHASES);
+      await search('  BET ');
+      expect(cardTitles()).toEqual(['Beta']);
+      expect(element.querySelector('.phase-list__count')?.textContent).toContain(
+        'Showing 1 of 4 phases',
+      );
+    });
+
+    it('should match the summary and require every word', async () => {
+      await render(PHASES);
+      await search('gamma summary');
+      expect(cardTitles()).toEqual(['Gamma']);
+      await search('gamma delta');
+      expect(cardTitles()).toEqual([]);
+    });
+
+    it('should ignore accents', async () => {
+      await render([phase('a', 'Café basics', 'done'), phase('b', 'Other', 'done')]);
+      await search('cafe');
+      expect(cardTitles()).toEqual(['Café basics']);
+    });
+
+    it('should combine with the status filter', async () => {
+      await render(PHASES);
+      toggle('Planned').click();
+      await fixture.whenStable();
+      await search('delta');
+      expect(cardTitles()).toEqual(['Delta']);
+      await search('alpha');
+      expect(cardTitles()).toEqual([]);
+      expect(element.querySelector('.phase-list__empty')?.textContent).toContain(
+        'No phases match your search or filter.',
+      );
+    });
+
+    it('should show everything again when the search is cleared', async () => {
+      await render(PHASES);
+      await search('alpha');
+      await search('');
+      expect(cardTitles()).toHaveLength(4);
+    });
+
+    it('should search the titles of the active language, ignoring Arabic diacritics', async () => {
+      const setup: PhaseSummary = {
+        ...phase('s', 'Setup', 'done'),
+        title: { en: 'Setup', ar: 'التَّهيئة' },
+      };
+      await render([setup, phase('b', 'Beta', 'done')]);
+      TestBed.inject(I18nService).setLanguage('ar');
+      await fixture.whenStable();
+
+      await search('التهيئة');
+      expect(cardTitles()).toEqual(['التَّهيئة']);
+    });
   });
 
   it('should translate the filters, count and cards when the language changes', async () => {

@@ -165,6 +165,37 @@ describe('routes', () => {
       // afterEach(verify) fails if the tab change caused another request
     });
 
+    it('should list the headings of the section in "On this page"', async () => {
+      await harness.navigateByUrl(`/roadmap/${ENV_ID}/learn`);
+      await respondWithIndex();
+      await respondWithDocument(ENV_ID, 'en');
+
+      const entries = Array.from(root().querySelectorAll('app-section-toc button'));
+      expect(entries.map((entry) => entry.textContent?.trim())).toEqual(['Rules', 'Tools']);
+    });
+
+    it('should not show "On this page" for a section with a single heading', async () => {
+      await harness.navigateByUrl(`/roadmap/${ENV_ID}/lesson`);
+      await respondWithIndex();
+      await respondWithDocument(ENV_ID, 'en');
+      expect(root().querySelector('app-section-toc')).toBeNull();
+    });
+
+    it('should scroll to the chosen heading and move focus to it', async () => {
+      const scrollIntoView = vi.fn();
+      Element.prototype.scrollIntoView = scrollIntoView;
+      await harness.navigateByUrl(`/roadmap/${ENV_ID}/learn`);
+      await respondWithIndex();
+      await respondWithDocument(ENV_ID, 'en');
+
+      root().querySelectorAll<HTMLButtonElement>('app-section-toc button')[1].click();
+
+      const heading = root().querySelector<HTMLElement>('#tools')!;
+      expect(scrollIntoView).toHaveBeenCalledOnce();
+      expect(document.activeElement).toBe(heading);
+      expect(heading.getAttribute('tabindex')).toBe('-1');
+    });
+
     it('should say so when a section has no content yet', async () => {
       await harness.navigateByUrl(`/roadmap/${TS_ID}/lesson`);
       await respondWithIndex();

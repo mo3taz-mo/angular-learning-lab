@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+.toc {
+  border: 1px solid var(--app-border);
+  border-radius: 0.5rem;
+  background: var(--app-card-surface);
+}
+
+.toc__title {
+  padding-block: 0.75rem;
+  padding-inline: 1rem;
+  font: var(--mat-sys-title-small);
+  cursor: pointer;
+}
+
+.toc__title:focus-visible,
+.toc__link:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: -2px;
+}
+
+.toc__list {
+  margin: 0;
+  padding-block: 0 0.75rem;
+  padding-inline: 0.5rem;
+  list-style: none;
+}
+
+.toc__item--sub {
+  padding-inline-start: 1rem;
+}
+
+.toc__link {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 2rem;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  border: 0;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--mat-sys-primary);
+  font: var(--mat-sys-body-medium);
+  text-align: start;
+  cursor: pointer;
+}
+
+.toc__link:hover {
+  background: var(--mat-sys-surface-container-high);
+}

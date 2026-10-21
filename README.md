@@ -46,9 +46,9 @@ generated from it and is not committed.
 - Lesson detail pages with goals, prerequisites, reading, videos, commands, exercises, expected results, troubleshooting, and review
 - Arabic/English language switching
 - RTL/LTR layout switching with language
-- Code examples and copy buttons
+- Code examples and copy buttons (done in Phase 07), plus an in-page table of contents
 - Progress tracking (local browser storage only if explicitly added later; Markdown files remain the source for lesson content). Language and theme choices are already remembered in local storage.
-- Search and filtering by topic, difficulty, and status
+- Search and filtering by topic, difficulty, and status (roadmap search by title and summary and status filter exist; searching lesson text does not yet)
 
 ## Important scope rule
 

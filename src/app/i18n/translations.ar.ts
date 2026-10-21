@@ -35,7 +35,8 @@ export const ar: Record<TranslationKey, string> = {
   'roadmap.filter.label': 'تصفية المراحل حسب الحالة',
   'roadmap.filter.all': 'الكل',
   'roadmap.count': 'المعروض: {shown} من {total}',
-  'roadmap.empty': 'لا توجد مراحل تطابق عامل التصفية المحدد.',
+  'roadmap.search.label': 'ابحث في المراحل',
+  'roadmap.empty': 'لا توجد مراحل تطابق بحثك أو عامل التصفية.',
   'roadmap.noPhases': 'لم تُنشر أي مراحل بعد.',
 
   'status.done': 'مكتملة',
@@ -52,6 +53,13 @@ export const ar: Record<TranslationKey, string> = {
   'phase.tab.learn': 'تعلّم',
   'phase.tab.lesson': 'الدرس',
   'phase.section.empty': 'لا يوجد محتوى في هذا القسم بعد.',
+  'toc.title': 'في هذه الصفحة',
+
+  'code.copy': 'نسخ الشيفرة',
+  'code.copied': 'تم النسخ',
+  'code.copiedAnnounce': 'تم نسخ الشيفرة إلى الحافظة.',
+  'code.copyFailed': 'تعذّر النسخ. الشيفرة محددة، اضغط Ctrl+C لنسخها.',
+
   'phase.notFound.title': 'المرحلة غير موجودة',
   'phase.notFound.body': 'لا توجد مرحلة بالمعرّف "{id}".',
 

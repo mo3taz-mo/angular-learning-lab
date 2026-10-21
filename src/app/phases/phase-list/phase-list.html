@@ -1,6 +1,11 @@
 <section aria-labelledby="phase-list-heading">
   <h2 id="phase-list-heading">{{ 'roadmap.listTitle' | t }}</h2>
 
+  <mat-form-field class="phase-list__search" subscriptSizing="dynamic">
+    <mat-label>{{ 'roadmap.search.label' | t }}</mat-label>
+    <input matInput type="search" [value]="query()" (input)="search($event)" />
+  </mat-form-field>
+
   <mat-button-toggle-group
     class="phase-list__filters"
     [attr.aria-label]="'roadmap.filter.label' | t"

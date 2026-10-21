@@ -146,3 +146,72 @@ app-rendered-content {
   border: 0;
   border-block-start: 1px solid var(--app-border);
 }
+
+/* Code block with a small bar (language name and copy button), added by RenderedContent. */
+.rendered-content .code-wrap {
+  margin-block: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  border-radius: 0.5rem;
+}
+
+.rendered-content .code-wrap > pre.code-block {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.rendered-content .code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-block: 0.25rem;
+  padding-inline: 0.75rem 0.25rem;
+  border-block-end: 1px solid var(--app-border);
+  background: var(--mat-sys-surface-container-highest);
+  color: var(--app-text-muted);
+  font: var(--mat-sys-label-medium);
+}
+
+.rendered-content .code-language {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, 'Courier New', monospace;
+}
+
+.rendered-content .copy-button {
+  min-block-size: 2rem;
+  padding-block: 0.25rem;
+  padding-inline: 0.75rem;
+  border: 0;
+  border-radius: 1rem;
+  background: transparent;
+  color: var(--mat-sys-primary);
+  font: inherit;
+  cursor: pointer;
+}
+
+.rendered-content .copy-button:hover {
+  background: var(--mat-sys-surface-container-high);
+}
+
+.rendered-content .copy-button:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 1px;
+}
+
+/* Read by screen readers only. */
+.rendered-content-status {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.rendered-content :is(h2, h3):focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 2px;
+}
